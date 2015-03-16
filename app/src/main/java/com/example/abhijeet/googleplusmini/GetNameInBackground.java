@@ -31,7 +31,7 @@ public class GetNameInBackground extends AbstractGetNameTask {
     @Override
     protected String fetchToken() throws IOException {
         try {
-            return GoogleAuthUtil.getTokenWithNotification(
+            return GoogleAuthUtil.getTokenWithNotification(  //or GoogleAuthUtil.getToken()
                     mActivity, mEmail, mScope, null, makeCallback(mEmail));
         } catch (UserRecoverableNotifiedException userRecoverableException) {
             // Unable to authenticate, but the user can fix this.
@@ -46,9 +46,9 @@ public class GetNameInBackground extends AbstractGetNameTask {
 
     private Intent makeCallback(String accountName) {
         Intent intent = new Intent();
-        intent.setAction("com.google.android.gms.auth.sample.helloauth.Callback");
+        intent.setAction("com.example.abhijeet.googleplusmini.Callback");
         intent.putExtra(HelloActivity.EXTRA_ACCOUNTNAME, accountName);
-        intent.putExtra(HelloActivity.TYPE_KEY, HelloActivity.Type.BACKGROUND.name());
+        intent.putExtra(HelloActivity.TYPE_KEY, "Background");
         return intent;
     }
 

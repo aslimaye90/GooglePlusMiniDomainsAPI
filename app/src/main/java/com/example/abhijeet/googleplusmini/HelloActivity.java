@@ -21,6 +21,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 
 
 public class HelloActivity extends Activity {
+
     private static final String TAG = "PlayHelloActivity";
     private static final String SCOPE = "oauth2:https://www.googleapis.com/auth/userinfo.profile";
     public static final String EXTRA_ACCOUNTNAME = "extra_accountname";
@@ -32,11 +33,7 @@ public class HelloActivity extends Activity {
     static final int REQUEST_CODE_RECOVER_FROM_PLAY_SERVICES_ERROR = 1002;
 
     private String mEmail;
-
-    private Type requestType;
-
     public static String TYPE_KEY = "type_key";
-    public static enum Type {FOREGROUND, BACKGROUND, BACKGROUND_WITH_SYNC}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +43,7 @@ public class HelloActivity extends Activity {
         mOut = (TextView) findViewById(R.id.message);
 
         Bundle extras = getIntent().getExtras();
-        requestType = Type.valueOf(extras.getString(TYPE_KEY));
-        setTitle(getTitle() + " - " + requestType.name());
+        setTitle(getTitle() + " - Background");
         if (extras.containsKey(EXTRA_ACCOUNTNAME)) {
             mEmail = extras.getString(EXTRA_ACCOUNTNAME);
             getTask(HelloActivity.this, mEmail, SCOPE).execute();
@@ -102,7 +98,7 @@ public class HelloActivity extends Activity {
             pickUserAccount();
         } else {
             if (isDeviceOnline()) {
-                getTask(HelloActivity.this, mEmail, SCOPE).execute();
+                getTask(this, mEmail, SCOPE).execute();
             } else {
                 Toast.makeText(this, "No network connection available", Toast.LENGTH_SHORT).show();
             }
@@ -176,17 +172,7 @@ public class HelloActivity extends Activity {
      * Note: This approach is for demo purposes only. Clients would normally not get tokens in the
      * background from a Foreground activity.
      */
-    private AbstractGetNameTask getTask(
-            HelloActivity activity, String email, String scope) {
-        switch(requestType) {
-            case FOREGROUND:
-                return new GetNameInForeground(activity, email, scope);
-            case BACKGROUND:
-                return new GetNameInBackground(activity, email, scope);
-            case BACKGROUND_WITH_SYNC:
-                return new GetNameInBackgroundWithSync(activity, email, scope);
-            default:
-                return new GetNameInBackground(activity, email, scope);
-        }
+    private AbstractGetNameTask getTask(HelloActivity activity, String email, String scope) {
+        return new GetNameInBackground(activity, email, scope);
     }
 }

@@ -18,8 +18,8 @@ import java.net.URL;
 public abstract class AbstractGetNameTask extends AsyncTask<Void, Void, Void>{
     private static final String TAG = "TokenInfoTask";
     private static final String NAME_KEY = "given_name";
-    protected HelloActivity mActivity;
 
+    protected HelloActivity mActivity;
     protected String mScope;
     protected String mEmail;
 
@@ -67,6 +67,8 @@ public abstract class AbstractGetNameTask extends AsyncTask<Void, Void, Void>{
             // error has already been handled in fetchToken()
             return;
         }
+
+
         URL url = new URL("https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + token);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         int sc = con.getResponseCode();

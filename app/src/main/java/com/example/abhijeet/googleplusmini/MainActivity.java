@@ -2,6 +2,7 @@ package com.example.abhijeet.googleplusmini;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.ListActivity;
@@ -27,13 +28,15 @@ public class MainActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         // Highly coupled with the order of contents in main_activity_items
         Intent intent = new Intent(this, HelloActivity.class);
-        if (position == 0) {
+        Log.i("item clicked: ", Integer.toString(position));  //just to check which item is clicked
+        intent.putExtra(HelloActivity.TYPE_KEY, "background");
+        /*if (position == 0) {
             intent.putExtra(HelloActivity.TYPE_KEY, HelloActivity.Type.FOREGROUND.name());
         } else if (position == 1) {
-            intent.putExtra(HelloActivity.TYPE_KEY, HelloActivity.Type.BACKGROUND.name());
+
         } else if (position == 2) {
             intent.putExtra(HelloActivity.TYPE_KEY, HelloActivity.Type.BACKGROUND_WITH_SYNC.name());
-        }
+        }*/
         startActivity(intent);
     }
 }
