@@ -10,15 +10,18 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
 import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.AccountPicker;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
+import java.util.ArrayList;
 
 public class HelloActivity extends Activity {
 
@@ -34,13 +37,26 @@ public class HelloActivity extends Activity {
 
     private String mEmail;
     public static String TYPE_KEY = "type_key";
+    private Button btnSignIn, btnSignOut, btnRevokeAccess;
+    private ListView mCirclesListView;
+    private ArrayAdapter<String> mCirclesAdapter;
+    private ArrayList<String> mCirclesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.accounts_tester);
+        setContentView(R.layout.list_activity);
 
-        mOut = (TextView) findViewById(R.id.message);
+        mOut = (TextView) findViewById(R.id.sign_in_status);
+        btnRevokeAccess = (Button) findViewById(R.id.revoke_access_button);
+        btnSignIn = (Button) findViewById(R.id.sign_in_button);
+        btnSignOut = (Button) findViewById(R.id.sign_out_button);
+        mCirclesListView = (ListView) findViewById(R.id.circles_list);
+
+        mCirclesList = new ArrayList<String>();
+        mCirclesAdapter = new ArrayAdapter<String>(
+                this, R.layout.circles_list_view, mCirclesList);
+        mCirclesListView.setAdapter(mCirclesAdapter);
 
         Bundle extras = getIntent().getExtras();
         setTitle(getTitle() + " - Background");
@@ -87,6 +103,7 @@ public class HelloActivity extends Activity {
 
     /** Called by button in the layout */
     public void greetTheUser(View view) {
+
         getUsername();
     }
 
@@ -172,7 +189,7 @@ public class HelloActivity extends Activity {
      * Note: This approach is for demo purposes only. Clients would normally not get tokens in the
      * background from a Foreground activity.
      */
-    private AbstractGetNameTask getTask(HelloActivity activity, String email, String scope) {
-        return new GetNameInBackground(activity, email, scope);
+    private GetNameTask getTask(HelloActivity activity, String email, String scope) {
+        return new GetNameTask(activity, email, scope);
     }
 }

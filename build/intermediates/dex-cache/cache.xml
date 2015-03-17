@@ -23,18 +23,18 @@
         <dex dex="/home/abhijeet/AndroidStudioProjects/GooglePlusMini/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-2c5f5ce5740e81ed70bd0da8e8e4840d38543e75.jar" />
     </item>
     <item
-        jar="/home/abhijeet/AndroidStudioProjects/GooglePlusMini/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/home/abhijeet/AndroidStudioProjects/GooglePlusMini/app/build/intermediates/pre-dexed/debug/classes-2177e35f7ad3112ec5edb4a684db03d89bccde04.jar" />
-    </item>
-    <item
         jar="/home/abhijeet/AndroidStudioProjects/GooglePlusMini/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
         <dex dex="/home/abhijeet/AndroidStudioProjects/GooglePlusMini/app/build/intermediates/pre-dexed/debug/classes-3d25062eb659192b7b63e5fb68c2804b9f7b5f81.jar" />
+    </item>
+    <item
+        jar="/home/abhijeet/AndroidStudioProjects/GooglePlusMini/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/abhijeet/AndroidStudioProjects/GooglePlusMini/app/build/intermediates/pre-dexed/debug/classes-2177e35f7ad3112ec5edb4a684db03d89bccde04.jar" />
     </item>
 
 </items>
